@@ -1,0 +1,32 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant.configure("2") do |config|
+  # vagrant variables
+  os = "centos/7"
+  subnet = "192.168.100"
+
+  config.vm.define "master", primary: true do |master|
+    master.vm.provider "virtualbox" do |vb|
+      vb.memory = "1024"
+      vb.cpus = 1
+      vb.name = "master"
+    end
+    master.vm.box = "#{os}"
+    master.vm.hostname = "master"
+    master.vm.network "private_network", ip: "#{subnet}.10"
+  end
+
+  [["node1", "#{subnet}.11"], ["node2", "#{subnet}.12"]].each do |vmname,ip|
+    config.vm.define "#{vmname}" do |node|
+      node.vm.provider "virtualbox" do |vb|
+        vb.memory = "1024"
+        vb.cpus = 1
+        vb.name = "#{vmname}"
+      end
+      node.vm.box = "#{os}"
+      node.vm.hostname = "#{vmname}"
+      node.vm.network "private_network", ip: "#{ip}"
+    end
+  end
+end

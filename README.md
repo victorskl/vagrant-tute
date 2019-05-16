@@ -36,5 +36,6 @@ vagrant up
 vagrant status
 vagrant ssh
 vagrant destroy
+...
+vagrant global-status
 ```
-
