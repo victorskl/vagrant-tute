@@ -14,13 +14,5 @@ vagrant up
 vagrant status
 vagrant ssh-config
 vagrant ssh master
-[vagrant@master ~]$ ip a
-[vagrant@master ~]$ ping 192.168.100.1
-[vagrant@master ~]$ ping 192.168.100.11
-[vagrant@master ~]$ ping 192.168.100.12
-[vagrant@master ~]$ exit
-ping 192.168.100.10
-ping 192.168.100.11
-ping 192.168.100.12
 vagrant destroy
 ```

@@ -11,6 +11,19 @@ VBoxManage showvminfo master --details
 VBoxManage modifyvm master --groups simple-cluster
 ```
 
+### vboxnet issue when using Cisco VPN on host
+
+When using Cisco AnyConnect VPN on macOS, VirtualBox vboxnet host-only interface connection will get dropout and, no longer ping-able or ssh-able to host to VMs. When this happens, a reboot to host machine work. But, a better yet, just stop all VMs, remove vboxnet and recreate again, to avoid rebooting host machine.
+
+```
+vagrant status
+vagrant halt
+ifconfig -a
+VBoxManage list hostonlyifs
+VBoxManage hostonlyif remove vboxnet0
+vagrant up
+```
+
 ### Vagrant VirtualBox NatNetwork Issue
 
 - https://www.virtualbox.org/manual/ch06.html#networkingmodes
